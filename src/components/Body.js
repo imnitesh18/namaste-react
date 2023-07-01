@@ -1,14 +1,10 @@
-import RestaurantCard from "../ReastaurantCard";
+import RestaurantCard from "./RestaurantCard";
 import resList from "../utils/mockData";
 import { useState, useEffect } from "react";
-import Shimmer from "../Shimmer";
-
-function filterData(searchInput, restaurants) {
-  const filterData = restaurants.filter((restaurant) =>
-    restaurant?.data?.name?.toLowerCase()?.includes(searchInput.toLowerCase())
-  );
-  return filterData;
-}
+import Shimmer from "./Shimmer";
+import { Link } from "react-router-dom";
+import { filterData } from "../utils/constants";
+import useOnline from "../utils/useOnline";
 
 const Body = () => {
   const [allRestaurants, setAllRestaurants] = useState([]);
@@ -29,12 +25,16 @@ const Body = () => {
     setFilteredRestaurants(json?.data?.cards[2]?.data?.data?.cards);
   }
 
+  const isOnline = useOnline();
+  if (!isOnline)
+    return <h1>🔴 Offline, please check your internet connection!!</h1>;
+
   if (!allRestaurants) {
     return null;
   }
 
-  if (filteredRestaurants?.length === 0)
-    return <h1>Reastaurants not found!!!</h1>;
+  // if (filteredRestaurants?.length === 0)
+  //   return <h1>restaurants not found!!!</h1>;
   return allRestaurants?.length === 0 ? (
     <Shimmer />
   ) : (
@@ -62,7 +62,12 @@ const Body = () => {
       </div>
       <div className="res-container">
         {filteredRestaurants.map((restaurant) => (
-          <RestaurantCard key={restaurant.data.id} resData={restaurant} />
+          <Link
+            to={"/restaurant" + restaurant.data.id}
+            key={restaurant.data.id}
+          >
+            <RestaurantCard resData={restaurant} />
+          </Link>
         ))}
       </div>
     </div>
