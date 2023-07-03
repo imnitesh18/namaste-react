@@ -3,6 +3,8 @@ import { LOGO_URL } from "../utils/constants";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import useOnline from "../utils/useOnline";
+import { useSelector } from "react-redux";
+import store from "../utils/store";
 const loggedInUser = () => {
   return false;
 };
@@ -17,8 +19,10 @@ const Header = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   // const [isOnline, setIsOnline] = useState();
   const isOnline = useOnline();
+
+  const cartItems = useSelector((store) => store.cart.items);
   return (
-    <div className="flex justify-between bg-blue-300 shadow-lg sm:bg-pink-50 md:bg-yellow-100">
+    <div className="flex justify-between bg-pink-50">
       {/* <Title /> */}
       <div className="logo-container">
         <img className="h-28 p-2" alt="logo" src={LOGO_URL}></img>
@@ -38,7 +42,9 @@ const Header = () => {
           <Link to="/instamart">
             <li className="px-2">Instamart</li>
           </Link>
-          <li className="px-2">Cart</li>
+          <Link to="/cart">
+            <li className="px-2">Cart {cartItems.length} items</li>
+          </Link>
         </ul>
       </div>
       <h1>{isOnline ? "✅" : "🔴"}</h1>
