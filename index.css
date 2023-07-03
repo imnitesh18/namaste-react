@@ -1,7 +1,16 @@
-.header{
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+
+
+/* .header{
    display: flex;
    justify-content: space-between;
    border: 1px solid black;
+   margin: 10px;
 }
 .logo{
   width: 200px;
@@ -31,13 +40,14 @@
   border: 1px solid black;
   cursor: pointer;
  
-}
+ 
+} */
 
 /* .res-card:hover{
   border: 1px solid black;
   cursor: pointer;
 } */
-
+/* 
 .search-input{
   margin: 10px;
  
@@ -64,4 +74,4 @@
 }
 .menu{
   display:flex;
-}
+} */

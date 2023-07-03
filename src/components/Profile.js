@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 const Profile = (props) => {
   const [count, setCount] = useState();
 
-  useEffect(() => {}, [count]);
+  useEffect(() => {}, [count, count2]);
   return (
     <div>
       <h2>Profile Component</h2>

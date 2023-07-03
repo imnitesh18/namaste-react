@@ -11,20 +11,18 @@ class Profile extends React.Component {
     };
     // console.log("child - constructor" + this.props.name);
   }
-
-  componentWillUnmount() {
-    // console.log("componentWillUnmount");
-    clearInterval(this.timer);
-  }
-
-  componentDidUpdate(prevProps, prevState) {
-    console.log("ComponentDidupdate");
-  }
-
   componentDidMount() {
     this.timer = setInterval(() => {
       // console.log("Namste react op");
     }, 1000);
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    // console.log("ComponentDidupdate");
+  }
+  componentWillUnmount() {
+    // console.log("componentWillUnmount");
+    clearInterval(this.timer);
   }
 
   render() {
