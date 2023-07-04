@@ -47,7 +47,7 @@ const Header = () => {
           </Link>
         </ul>
       </div>
-      <h1>{isOnline ? "✅" : "🔴"}</h1>
+      <h1 className="py-10">{isOnline ? "✅" : "🔴"}</h1>
       {isLoggedIn ? (
         <button onClick={() => setIsLoggedIn(false)}>Logout</button>
       ) : (
